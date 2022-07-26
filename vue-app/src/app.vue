@@ -1,31 +1,37 @@
-<script>
-import HeaderBar from '@/components/header-bar.vue';
-import NavBar from '@/components/nav-bar.vue';
-
-export default {
-  name: 'App',
-  data() {
-    return {};
-  },
-  components: {
-    HeaderBar,
-    NavBar,
-  },
-};
-</script>
-
 <template>
   <div id="app">
-    <HeaderBar />
-    <div class="section columns">
-      <NavBar />
-      <main class="column">
-        <router-view />
-      </main>
-    </div>
+    <Dashboard v-if="settings === true"/>
+    <galaxy v-if="settings !== true"/>
   </div>
 </template>
 
-<style lang="scss">
-@import 'styles.scss';
+<script>
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import Dashboard from './components/Dashboard.vue'
+import galaxy from './components/galaxy.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Dashboard, galaxy
+  },
+  data() {
+      return {
+          settings: false
+      }
+  },
+  mounted() {
+    console.log("I am in mounted!!!")
+    // this.settings = true
+  },
+  setup () {
+    console.log("I am in setup!!!")
+  }
+}
+</script>
+
+<style>
+  @import './assets/styles/global.css';
 </style>
